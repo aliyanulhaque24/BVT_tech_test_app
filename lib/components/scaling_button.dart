@@ -29,3 +29,5 @@ class _ScalingButtonState extends State<ScalingButton> {
     );
   }
 }
+
+// this is a reuseable button component which is used extensively thorughout this application

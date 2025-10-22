@@ -12,13 +12,14 @@ class BVTTech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+      // for mobile screen responsiveness
       designSize: Size(393, 851),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          theme:
+          theme: // brief Theme of the app, works for testing but can be more detailed to match desired UI
               ThemeData(
                 useMaterial3: true,
                 scaffoldBackgroundColor: Color.fromARGB(255, 234, 234, 234),
@@ -33,6 +34,7 @@ class BVTTech extends StatelessWidget {
                   ),
                 ),
               ).copyWith(
+                // route transitions
                 pageTransitionsTheme: const PageTransitionsTheme(
                   builders: {
                     TargetPlatform.android: CupertinoPageTransitionsBuilder(),
@@ -40,7 +42,7 @@ class BVTTech extends StatelessWidget {
                   },
                 ),
               ),
-          home: HomePage(),
+          home: HomePage(), // this is the main start up page of the app
         );
       },
     );

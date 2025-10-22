@@ -12,6 +12,7 @@ class StrikeRateCalculator extends StatefulWidget {
 }
 
 class _StrikeRateCalculatorState extends State<StrikeRateCalculator> {
+  // declaring controllers, names and other requirements for the page
   final TextEditingController _runsController = TextEditingController();
   final TextEditingController _ballsController = TextEditingController();
 
@@ -33,6 +34,7 @@ class _StrikeRateCalculatorState extends State<StrikeRateCalculator> {
     super.dispose();
   }
 
+  // this is the function which calculates the strike rate. it includes the validation checks
   void calculateStrikeRate() {
     resultRate = null;
     resultMessage = null;
@@ -76,6 +78,8 @@ class _StrikeRateCalculatorState extends State<StrikeRateCalculator> {
     });
   }
 
+  // error diplaying message function
+
   void showError(String message) {
     setState(() {
       displayMessage = message;
@@ -91,6 +95,7 @@ class _StrikeRateCalculatorState extends State<StrikeRateCalculator> {
 
   @override
   Widget build(BuildContext context) {
+    // page structure starts here
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -114,11 +119,13 @@ class _StrikeRateCalculatorState extends State<StrikeRateCalculator> {
               ),
             ),
             SizedBox(height: 20.h),
+            // this is the display message which changes to show error messages. fading can be applied for smoother animations
             Text(
               displayMessage,
               style: TextStyle(fontSize: 24.sp, color: displayMessageColor),
             ),
             SizedBox(height: 20.h),
+            // input field imported from components
             InputField(
               controller: _runsController,
               hintText: 'Enter number of runs here',
@@ -131,6 +138,7 @@ class _StrikeRateCalculatorState extends State<StrikeRateCalculator> {
               textInputAction: TextInputAction.done,
             ),
             SizedBox(height: 20.h),
+            // action button
             ScalingButton(
               onTap: calculateStrikeRate,
               child: Container(
@@ -153,6 +161,8 @@ class _StrikeRateCalculatorState extends State<StrikeRateCalculator> {
               ),
             ),
             Spacer(),
+
+            // this parts displays the results
             Text(
               resultRate != null ? 'Strike Rate: $resultRate' : '',
               style: TextStyle(

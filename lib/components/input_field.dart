@@ -47,3 +47,5 @@ class InputField extends StatelessWidget {
     );
   }
 }
+
+// this is a reuseable text form field which is used in the app many times

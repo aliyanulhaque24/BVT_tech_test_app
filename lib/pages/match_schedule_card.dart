@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
+// this is a custom class which will be handy in displaying the results
 class Match {
   final String team1;
   final String team2;
@@ -28,6 +29,8 @@ class MatchScheduleCard extends StatefulWidget {
 }
 
 class _MatchScheduleCardState extends State<MatchScheduleCard> {
+  // declaring controllers, names and other requirements for the page
+
   List<Match> matches = [];
   final TextEditingController _team1Controller = TextEditingController();
   final TextEditingController _team2Controller = TextEditingController();
@@ -37,6 +40,8 @@ class _MatchScheduleCardState extends State<MatchScheduleCard> {
   void initState() {
     super.initState();
   }
+
+  // this is the function which adds the match card. it includes the validation checks
 
   void addCard() {
     String team1 = _team1Controller.text.trim();
@@ -59,6 +64,7 @@ class _MatchScheduleCardState extends State<MatchScheduleCard> {
         selectedDateTime = DateTime.now();
       });
     } else {
+      // the dialog will be shown in case the user doesnt enter any required values
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -81,6 +87,7 @@ class _MatchScheduleCardState extends State<MatchScheduleCard> {
 
   @override
   Widget build(BuildContext context) {
+    // app skeleton
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -90,6 +97,7 @@ class _MatchScheduleCardState extends State<MatchScheduleCard> {
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         child: Column(
           children: [
+            // this first column holds the input elements and action buttons.
             Column(
               children: [
                 SizedBox(height: 20.h),
@@ -115,6 +123,7 @@ class _MatchScheduleCardState extends State<MatchScheduleCard> {
                   ],
                 ),
                 SizedBox(height: 20.h),
+                // date selector
                 ScalingButton(
                   onTap: changeDateTime,
                   child: Container(
@@ -194,6 +203,7 @@ class _MatchScheduleCardState extends State<MatchScheduleCard> {
                 SizedBox(height: 20.h),
               ],
             ),
+            // this second part displays the match cards in a scrollable list view
             Expanded(
               child: ListView.separated(
                 itemCount: matches.length,
@@ -308,6 +318,8 @@ class _MatchScheduleCardState extends State<MatchScheduleCard> {
       ),
     );
   }
+
+  // this is the function which lets the user change the date and time of the scheduled match. the date can not be in the past
 
   Future changeDateTime() async {
     DateTime? date = await changeDate();

@@ -12,12 +12,16 @@ class SimpleLeaderboardDisplay extends StatefulWidget {
 }
 
 class _SimpleLeaderboardDisplayState extends State<SimpleLeaderboardDisplay> {
-  List<Map<String, dynamic>> players = [];
+  // declaring controllers, names and other requirements for the page
+
+  List<Map<String, dynamic>> players = []; // this list stores the players
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _runsController = TextEditingController();
   String displayMessage = 'Add a player';
   Color displayMessageColor = Color.fromARGB(255, 71, 71, 71);
+
+  // this is the function which adds the player. it includes the validation checks
 
   void addPlayer() {
     String runsText = _runsController.text.trim();
@@ -61,6 +65,8 @@ class _SimpleLeaderboardDisplayState extends State<SimpleLeaderboardDisplay> {
     showSuccess('Player added successfully');
   }
 
+  // error diplaying message function
+
   void showError(String message) {
     setState(() {
       displayMessage = message;
@@ -73,6 +79,8 @@ class _SimpleLeaderboardDisplayState extends State<SimpleLeaderboardDisplay> {
       });
     });
   }
+
+  // success diplaying message function
 
   void showSuccess(String message) {
     setState(() {
@@ -89,6 +97,7 @@ class _SimpleLeaderboardDisplayState extends State<SimpleLeaderboardDisplay> {
 
   @override
   Widget build(BuildContext context) {
+    // this is the app skeleton
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -103,6 +112,7 @@ class _SimpleLeaderboardDisplayState extends State<SimpleLeaderboardDisplay> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 20.h),
+              // this is the leaderboard which will display the results
               Container(
                 height: 300.h,
                 width: double.infinity,
@@ -154,6 +164,7 @@ class _SimpleLeaderboardDisplayState extends State<SimpleLeaderboardDisplay> {
                                 ),
                               )
                             : ListView.builder(
+                                // this list builder is used to display the leaderboard
                                 itemCount: players.length,
                                 itemBuilder: (context, index) {
                                   final player = players[index];
@@ -230,11 +241,13 @@ class _SimpleLeaderboardDisplayState extends State<SimpleLeaderboardDisplay> {
                 ),
               ),
               SizedBox(height: 40.h),
+              // display message
               Text(
                 displayMessage,
                 style: TextStyle(fontSize: 20.sp, color: displayMessageColor),
               ),
               SizedBox(height: 20.h),
+              // input fields
               InputField(
                 controller: _nameController,
                 textInputAction: TextInputAction.next,
@@ -248,6 +261,7 @@ class _SimpleLeaderboardDisplayState extends State<SimpleLeaderboardDisplay> {
                 hintText: 'Enter Runs here',
               ),
               SizedBox(height: 20.h),
+              // action buttons
               ScalingButton(
                 onTap: addPlayer,
                 child: Container(
